@@ -45,4 +45,16 @@ class TicketGuest < MiniTest::Test
         assert_equal(1, Ticket.all().length())
     end
 
+    def test_sell_ticket_to_customer()
+        Ticket.delete_all()
+        Customer.delete_all()
+        Film.delete_all()
+
+        @customer1.save()
+        @film1.save()
+        @ticket.sell_ticket_to_customer(@customer1, @film1)
+
+        assert_equal(1, Ticket.all().length())
+    end
+
 end

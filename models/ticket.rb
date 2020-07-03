@@ -71,4 +71,12 @@ class Ticket
             ticket.save()
             return ticket
         end
+        
+        def sell_ticket_to_customer(customer, film)
+            if customer.sufficient_funds?(film)
+                customer.pay_film_price(film)
+                create_ticket(customer, film)
+            end
+        end
+
 end
