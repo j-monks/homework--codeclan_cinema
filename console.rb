@@ -28,6 +28,12 @@ film1 = Film.new({
 })
 film1.save()
 
+film2 = Film.new({
+    "title" => "Fight Club",
+    "price" => 5
+})
+film2.save()
+
 # TICKETS
 ticket1 = Ticket.new({
     "customer_id" => customer1.id,
@@ -35,7 +41,13 @@ ticket1 = Ticket.new({
 })
 ticket1.save()
 
+ticket2 = Ticket.new({
+    "customer_id" => customer1.id,
+    "film_id" => film2.id
+})
+ticket2.save()
 
+# VARIABLES
 all_tickets = Ticket.all()
 all_customers = Customer.all()
 all_films = Film.all()

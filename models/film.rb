@@ -35,6 +35,16 @@ class Film
         result = SqlRunner.run(sql, values)
         return Film.new(result[0])
     end
+
+    def customers() # READ
+        sql = "SELECT customers.* FROM customers
+        INNER JOIN tickets
+        ON customers.id = tickets.customer_id
+        WHERE film_id = $1"
+        values = [@id]
+        result = SqlRunner.run(sql, values)
+        return Customer.map_items(result)
+    end
     
     def update() # UPDATE
         sql = "UPDATE films SET
