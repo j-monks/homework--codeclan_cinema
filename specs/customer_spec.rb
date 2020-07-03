@@ -49,10 +49,5 @@ class CustomerGuest < MiniTest::Test
         @customer1.pay_film_price(@film1)
         assert_equal(21, @customer1.funds)
     end
-
-    def test_customer_cannot_pay_film_price_if_insufficient_funds
-        @customer2.pay_film_price(@film1)
-        assert_equal(5, @customer2.funds)
-    end
-
+    
 end

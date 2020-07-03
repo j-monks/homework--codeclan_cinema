@@ -71,5 +71,4 @@ class Ticket
             ticket.save()
             return ticket
         end
-        
 end
