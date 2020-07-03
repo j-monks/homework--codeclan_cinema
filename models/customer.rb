@@ -47,6 +47,14 @@ class Customer
         return Film.map_items(result)
     end
 
+    def tickets() # READ
+        sql = "SELECT * FROM tickets
+        WHERE customer_id = $1"
+        values = [@id]
+        result = SqlRunner.run(sql, values)
+        return Ticket.map_items(result)
+    end
+
     def update() # UPDATE
         sql = "UPDATE customers SET
         (name, funds)
@@ -75,16 +83,17 @@ class Customer
 
 
     # CLASS LOGIC METHODS
-    def sufficient_funds?(price)
-        if @funds > price
+    def sufficient_funds?(film)
+        if @funds > film.price
             return true
         else
             return false
         end
     end
 
-    def pay_film_price(price)
-        @funds -= price if sufficient_funds?(price)
+    def pay_film_price(film)
+        @funds -= film.price if sufficient_funds?(film)
     end
 
 end
+

@@ -62,4 +62,14 @@ class Ticket
             return data.map {|ticket| Ticket.new(ticket)}
         end
 
+        # CLASS LOGIC METHODS
+        def create_ticket(customer, film)
+            ticket = Ticket.new({
+                "customer_id" => customer.id,
+                "film_id" => film.id
+            })
+            ticket.save()
+            return ticket
+        end
+        
 end

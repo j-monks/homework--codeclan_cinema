@@ -36,21 +36,23 @@ class CustomerGuest < MiniTest::Test
     end
 
     def test_sufficient_funds__true_if_enough
-        assert_equal(true, @customer1.sufficient_funds?(@film1.price))
+        assert_equal(true, @customer1.sufficient_funds?(@film1))
     end
 
     def test_sufficient_funds__false_if_not_enough
-        assert_equal(false, @customer2.sufficient_funds?(@film1.price))
+        assert_equal(false, @customer2.sufficient_funds?(@film1))
     end
 
     def test_customer_can_pay_film_price__decreases_money
-        @customer1.pay_film_price(@film1.price)
+        @customer1.save()
+        @film1.save()
+        @customer1.pay_film_price(@film1)
         assert_equal(21, @customer1.funds)
     end
 
     def test_customer_cannot_pay_film_price_if_insufficient_funds
-        @customer2.pay_film_price(@film1.price)
+        @customer2.pay_film_price(@film1)
         assert_equal(5, @customer2.funds)
     end
-    
+
 end
