@@ -16,6 +16,11 @@ class CustomerGuest < MiniTest::Test
             "funds" => 30
         })
 
+        @customer2 = Customer.new({
+            "name" => "Kayley",
+            "funds" => 5
+        })
+
         @film1 = Film.new({
             "title" => "Pulp Fiction",
             "price" => 9
@@ -35,11 +40,17 @@ class CustomerGuest < MiniTest::Test
     end
 
     def test_sufficient_funds__false_if_not_enough
-        poor_customer = Customer.new({
-            "name" => "Kayley",
-            "funds" => 5
-        })
-        assert_equal(false, poor_customer.sufficient_funds?(@film1.price))
+        assert_equal(false, @customer2.sufficient_funds?(@film1.price))
+    end
+
+    def test_customer_can_pay_film_price__decreases_money
+        @customer1.pay_film_price(@film1.price)
+        assert_equal(21, @customer1.funds)
+    end
+
+    def test_customer_cannot_pay_film_price_if_insufficient_funds
+        @customer2.pay_film_price(@film1.price)
+        assert_equal(5, @customer2.funds)
     end
     
 end

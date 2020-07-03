@@ -83,4 +83,8 @@ class Customer
         end
     end
 
+    def pay_film_price(price)
+        @funds -= price if sufficient_funds?(price)
+    end
+
 end
