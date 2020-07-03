@@ -11,6 +11,7 @@ class Customer
         @funds = options["funds"].to_i
     end
 
+    # DATABASE METHODS
     def save() # CREATE
         sql = "INSERT INTO customers
         (name, funds)
@@ -70,6 +71,16 @@ class Customer
 
     def self.map_items(data) # HELPER
         return data.map {|customer| Customer.new(customer)}
+    end
+
+
+    # CLASS LOGIC METHODS
+    def sufficient_funds?(price)
+        if @funds > price
+            return true
+        else
+            return false
+        end
     end
 
 end
