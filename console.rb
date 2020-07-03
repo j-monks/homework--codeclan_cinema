@@ -34,23 +34,23 @@ film2 = Film.new({
 })
 film2.save()
 
-# TICKETS
-ticket1 = Ticket.new({
-    "customer_id" => customer1.id,
-    "film_id" => film1.id
-})
-ticket1.save()
-
-ticket2 = Ticket.new({
-    "customer_id" => customer1.id,
-    "film_id" => film2.id
-})
-ticket2.save()
+# TICKET
+ticket = Ticket.new({})
 
 # VARIABLES
 all_tickets = Ticket.all()
 all_customers = Customer.all()
 all_films = Film.all()
+
+# BOUGHT TICKETS
+ticket = ticket.sell_ticket_to_customer(customer1, film2)
+ticket = ticket.sell_ticket_to_customer(customer2, film2)
+
+# CHECK HOW MANY TICKETS WERE BOUGHT BY A CUSTOMER
+customer1.ticket_count()
+
+# CHECK HOW MANY CUSTOMERS ARE GOING TO WATCH A CERTAIN FILM
+film2.customer_count()
 
  binding.pry
  nil

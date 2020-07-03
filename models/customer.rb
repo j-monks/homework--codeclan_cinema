@@ -54,6 +54,15 @@ class Customer
         result = SqlRunner.run(sql, values)
         return Ticket.map_items(result)
     end
+    
+    def ticket_count() # READ
+        sql = "SELECT * FROM tickets
+        WHERE customer_id = $1"
+        values = [@id]
+        result = SqlRunner.run(sql, values)
+        tickets = Ticket.map_items(result)
+        return tickets.length
+    end
 
     def update() # UPDATE
         sql = "UPDATE customers SET

@@ -56,5 +56,5 @@ class TicketGuest < MiniTest::Test
 
         assert_equal(1, Ticket.all().length())
     end
-
+    
 end

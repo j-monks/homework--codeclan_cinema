@@ -78,5 +78,4 @@ class Ticket
                 create_ticket(customer, film)
             end
         end
-
 end
