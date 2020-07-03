@@ -1,6 +1,9 @@
-require_relative("db/sql_runner")
+require_relative("../db/sql_runner")
 
 class Customer
+
+    attr_reader :id
+    attr_accessor :name, :funds
 
     def initialize(options)
         @id = options["id"].to_i if options["id"]
@@ -8,14 +11,20 @@ class Customer
         @funds = options["funds"].to_i
     end
 
-    def save()
+    def save() # CREATE
         sql = "INSERT INTO customers
+        (name, funds)
         VALUES
         ($1, $2)
-        RETURNING ID"
+        RETURNING id"
         values = [@name, @funds]
         customer = SqlRunner.run(sql, values)[0]
-        @id = movie["id"].to_i
+        @id = customer["id"].to_i
+    end
+
+    def self.delete_all() # DELETE
+        sql = "DELETE FROM customers"
+        SqlRunner.run(sql)
     end
 
 end
