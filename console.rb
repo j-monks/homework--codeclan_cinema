@@ -15,6 +15,11 @@ customer1 = Customer.new({
 })
 customer1.save()
 
+customer2 = Customer.new({
+    "name" => "Jim",
+    "funds" => 60
+})
+customer2.save()
 
 # FILMS
 film1 = Film.new({
@@ -31,12 +36,9 @@ ticket1 = Ticket.new({
 ticket1.save()
 
 
-
-
-
-
-
-
+all_tickets = Ticket.all()
+all_customers = Customer.all()
+all_films = Film.all()
 
  binding.pry
  nil
