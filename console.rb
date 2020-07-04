@@ -2,11 +2,12 @@ require("pry-byebug")
 require_relative("models/ticket")
 require_relative("models/customer.rb")
 require_relative("models/film")
+require_relative("models/screening")
 
 Ticket.delete_all()
+Screening.delete_all()
 Customer.delete_all()
 Film.delete_all()
-
 
 # CUSTOMERS
 customer1 = Customer.new({
@@ -39,14 +40,21 @@ film2.save()
 # TICKET
 ticket = Ticket.new({})
 
+# SCREENINGS
+screening1 = Screening.new({
+    "show_time" => "20:00",
+    "film_title" => film2.title
+})
+screening1.save()
+
 # VARIABLES
 all_tickets = Ticket.all()
 all_customers = Customer.all()
 all_films = Film.all()
 
 # BOUGHT TICKETS
-ticket = ticket.sell_ticket_to_customer(customer1, film2)
-ticket = ticket.sell_ticket_to_customer(customer2, film2)
+ticket = ticket.sell_ticket_to_customer(customer1, film2, screening1)
+ticket = ticket.sell_ticket_to_customer(customer2, film2, screening1)
 
 # CHECK HOW MANY TICKETS WERE BOUGHT BY A CUSTOMER
 customer1.ticket_count()
