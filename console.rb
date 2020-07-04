@@ -3,7 +3,7 @@ require_relative("models/ticket")
 require_relative("models/customer.rb")
 require_relative("models/film")
 
-# Ticket.delete_all()
+Ticket.delete_all()
 Customer.delete_all()
 Film.delete_all()
 
@@ -24,13 +24,15 @@ customer2.save()
 # FILMS
 film1 = Film.new({
     "title" => "Pulp Fiction",
-    "price" => 9
+    "price" => 9,
+    "show_time" => "20:00"
 })
 film1.save()
 
 film2 = Film.new({
     "title" => "Fight Club",
-    "price" => 5
+    "price" => 5,
+    "show_time" => "16:00"
 })
 film2.save()
 

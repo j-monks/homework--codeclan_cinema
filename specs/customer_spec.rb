@@ -49,5 +49,5 @@ class CustomerGuest < MiniTest::Test
         @customer1.pay_film_price(@film1)
         assert_equal(21, @customer1.funds)
     end
-    
+
 end
