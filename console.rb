@@ -25,15 +25,13 @@ customer2.save()
 # FILMS
 film1 = Film.new({
     "title" => "Pulp Fiction",
-    "price" => 9,
-    "show_time" => "20:00"
+    "price" => 9
 })
 film1.save()
 
 film2 = Film.new({
     "title" => "Fight Club",
-    "price" => 5,
-    "show_time" => "16:00"
+    "price" => 5
 })
 film2.save()
 
@@ -47,6 +45,18 @@ screening1 = Screening.new({
 })
 screening1.save()
 
+screening2 = Screening.new({
+    "show_time" => "16:00",
+    "film_title" => film1.title
+})
+screening2.save()
+
+screening3 = Screening.new({
+    "show_time" => "18:00",
+    "film_title" => film2.title
+})
+screening3.save()
+
 # VARIABLES
 all_tickets = Ticket.all()
 all_customers = Customer.all()
@@ -57,10 +67,15 @@ ticket = ticket.sell_ticket_to_customer(customer1, film2, screening1)
 ticket = ticket.sell_ticket_to_customer(customer2, film2, screening1)
 
 # CHECK HOW MANY TICKETS WERE BOUGHT BY A CUSTOMER
-customer1.ticket_count()
+customer1_ticket_count = customer1.ticket_count()
 
 # CHECK HOW MANY CUSTOMERS ARE GOING TO WATCH A CERTAIN FILM
-film2.customer_count()
+film2_customer_count = film2.customer_count()
+
+# CREATE A SCREENINGS TABLE THAT LETS US KNOW WHAT TIME FILMS ARE SHOWING
+film1_showtimes = Screening.show_times(film1.title)
+film2_showtimes = Screening.show_times(film2.title)
+
 
  binding.pry
  nil

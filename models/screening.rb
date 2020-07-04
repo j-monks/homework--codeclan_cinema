@@ -22,9 +22,21 @@ class Screening
         @id = screening["id"].to_i
     end
 
+    def self.show_times(film_title) # READ
+        sql = "SELECT * FROM screenings
+        WHERE film_title = $1"
+        values = [film_title]
+        screenings = SqlRunner.run(sql, values)
+        return self.map_items(screenings)
+    end
+
     def self.delete_all() # DELETE
         sql = "DELETE FROM screenings"
         SqlRunner.run(sql)
+    end
+
+    def self.map_items(data) # HELPER
+        return data.map {|screening| Screening.new(screening)}
     end
 
 end
