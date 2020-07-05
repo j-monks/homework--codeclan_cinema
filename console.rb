@@ -17,7 +17,7 @@ customer1 = Customer.new({
 customer1.save()
 
 customer2 = Customer.new({
-    "name" => "Jim",
+    "name" => "Kayley",
     "funds" => 60
 })
 customer2.save()
@@ -57,14 +57,15 @@ screening3 = Screening.new({
 })
 screening3.save()
 
+# BOUGHT TICKETS
+ticket1 = ticket.sell_ticket_to_customer(customer1, film2, screening1)
+ticket2 = ticket.sell_ticket_to_customer(customer2, film2, screening1)
+ticket3 = ticket.sell_ticket_to_customer(customer1, film2, screening3)
+
 # VARIABLES
 all_tickets = Ticket.all()
 all_customers = Customer.all()
 all_films = Film.all()
-
-# BOUGHT TICKETS
-ticket = ticket.sell_ticket_to_customer(customer1, film2, screening1)
-ticket = ticket.sell_ticket_to_customer(customer2, film2, screening1)
 
 # CHECK HOW MANY TICKETS WERE BOUGHT BY A CUSTOMER
 customer1_ticket_count = customer1.ticket_count()
@@ -76,6 +77,10 @@ film2_customer_count = film2.customer_count()
 film1_showtimes = Screening.show_times(film1.title)
 film2_showtimes = Screening.show_times(film2.title)
 
+# WRITE A METHOD THAT FINDS OUT WHAT IS THE MOST POPULAR TIME ( MOST TICKETS SOLD ) FOR A GIVEN FILM
+film2_most_popular_showtime = Screening.most_popular_showtime_by_film(film2.id)
+
 
  binding.pry
  nil
+
